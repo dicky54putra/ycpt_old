@@ -100,7 +100,7 @@
             <li <?php if ($page == 'riwayat') {
                   echo 'class="active"';
                 } ?>>
-              <a href="<?php echo base_url('Riwayat_pembayaran_admin'); ?>">
+              <a href="<?php echo base_url('Riwayat_pembayaran/index_admin'); ?>">
                 <i class="glyphicon glyphicon-list-alt"></i>
                 <span>Riwayat Pembayaran Siswa</span>
               </a>
