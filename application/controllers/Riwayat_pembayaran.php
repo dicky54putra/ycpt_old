@@ -184,6 +184,7 @@ class Riwayat_Pembayaran extends AUTH_Controller
 		LEFT JOIN unit_pendidikan ON unit_pendidikan.id_unit_pendidikan = setting_pembayaran.id_unit_pendidikan
 		WHERE unit_pendidikan.id_unit_pendidikan = '$id_unit_pendidikan'
 		AND tipe_pembayaran.id_tipe_pembayaran = '$id_tipe_pembayaran'
+		AND setting_pembayaran.id_tahun_ajaran = '$id_tahun_ajaran'
 		ORDER BY setting_pembayaran.id_setting_pembayaran ASC");
 
 		$data['userdata']	= $this->userdata;
