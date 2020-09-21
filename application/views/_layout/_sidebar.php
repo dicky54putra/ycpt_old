@@ -51,6 +51,14 @@
                 <span>Unit Pendidikan</span>
               </a>
             </li>
+            <li <?php if ($page == 'tipe_kelas') {
+                  echo 'class="active"';
+                } ?>>
+              <a href="<?php echo base_url('tipe_kelas'); ?>">
+                <i class="glyphicon glyphicon-education"></i>
+                <span>Tipe Kelas</span>
+              </a>
+            </li>
             <li <?php if ($page == 'tahun_ajaran') {
                   echo 'class="active"';
                 } ?>>

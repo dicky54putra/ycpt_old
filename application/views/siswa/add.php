@@ -1,32 +1,26 @@
 <script type="text/javascript">
-  function cekform()
-  {
-    if (!$("#nis").val()) 
-    {
+  function cekform() {
+    if (!$("#nis").val()) {
       alert('Nis / Nisn Tidak boleh kosong');
       $("#nis").focus()
       return false;
     }
-    if (!$("#nama_siswa").val()) 
-    {
+    if (!$("#nama_siswa").val()) {
       alert('Nama Siswa Tidak boleh kosong');
       $("#nama_siswa").focus()
       return false;
     }
-    if (!$("#tempat_lahir").val()) 
-    {
+    if (!$("#tempat_lahir").val()) {
       alert('Tempat Lahir Tidak boleh kosong');
       $("#tempat_lahir").focus()
       return false;
     }
-    if (!$("#nama_ortu").val()) 
-    {
+    if (!$("#nama_ortu").val()) {
       alert('Nama Ortu Tidak boleh kosong');
       $("#nama_ortu").focus()
       return false;
     }
-    if (!$("#alamat").val()) 
-    {
+    if (!$("#alamat").val()) {
       alert('alamat Tidak boleh kosong');
       $("#alamat").focus()
       return false;
@@ -49,7 +43,7 @@
       </div>
       <div class="form-group">
         <label for="exampleInputNama">Tempat Lahir <b style="color: red;">*</b></label>
-        <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="<?php echo date("Y-m-d"); ?>" placeholder="Tempat Lahir">
+        <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir">
       </div>
       <div class="form-group">
         <label>Tanggal Lahir <b style="color: red;">*</b></label>
@@ -68,9 +62,10 @@
         <label>Alamat <b style="color: red;">*</b></label>
         <textarea class="form-control" name="alamat" id="alamat" rows="3" placeholder="Alamat ..."></textarea>
       </div>
-      <?php foreach ($unit_pendidikan as $k) { } ?>
+      <?php foreach ($unit_pendidikan as $k) {
+      } ?>
       <input type="hidden" class="form-control" name="id_unit_pendidikan" value="<?php echo $k->id_unit_pendidikan; ?>" id="id_unit_pendidikan" placeholder="Unit Pendidikan">
-      <input type="hidden" class="form-control" name="status" value="Aktif"  placeholder="Status">
+      <input type="hidden" class="form-control" name="status" value="Aktif" placeholder="Status">
     </div>
     <div class="box-footer">
       <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Simpan</button>
