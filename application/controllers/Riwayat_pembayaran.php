@@ -117,7 +117,7 @@ class Riwayat_Pembayaran extends AUTH_Controller
 		// echo $id_setting_pembayaran	;
 		// echo $nominal;
 		// echo $id_siswa;
-		// echo $a['id_kelas_siswa_detail'];				
+		// echo $a['id_kelas_siswa_detail'];
 		// exit();
 
 		$nis 						= $nis;

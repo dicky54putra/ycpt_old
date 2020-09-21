@@ -103,7 +103,7 @@
                                          LEFT JOIN siswa c on c.id_siswa = f.id_siswa
                                          LEFT JOIN setting_pembayaran d on d.id_setting_pembayaran = a.id_setting_pembayaran
                                          LEFT JOIN tipe_pembayaran e on e.id_tipe_pembayaran = d.id_tipe_pembayaran
-                                         WHERE c.nis = '$nis' and e.id_tipe_pembayaran = '$id_tipe_pembayaran'");
+                                         WHERE c.nis = '$nis' and e.id_tipe_pembayaran = '$id_tipe_pembayaran' and d.id_tahun_ajaran = $k->id_tahun_ajaran");
 
                 foreach ($query->result() as $row) {
                 }
@@ -130,7 +130,7 @@
                       </button>';
                 } else {
                   echo 'BELUM LUNAS ';
-                  echo '<a onclick="return bayar(' . $k->id_setting_pembayaran . ')" id="' . $k->id_setting_pembayaran . '" href="' . base_url() . 'riwayat_pembayaran/bayar/' . $m->nis . '/' . $m->id_tahun_ajaran . '/' . $k->id_tahun_ajaran . '/' . $k->id_setting_pembayaran . '/' . $hasil2 . '/' . $k->nominal . '/' . $m->id_siswa . '"">
+                  echo '<a onclick="return bayar(' . $k->id_setting_pembayaran . ')" id="' . $k->id_setting_pembayaran . '" href="' . base_url() . 'riwayat_pembayaran/bayar/' . $m->nis . '/' . $m->id_tahun_ajaran . '/' . $k->id_tahun_ajaran . '/' . $k->id_setting_pembayaran . '/' . $hasil2 . '/' . $hasil . '/' . $m->id_siswa . '"">
                       <button class="btn btn-basic">
                       <i class="glyphicon glyphicon-usd"></i> BAYAR
                       </button>';

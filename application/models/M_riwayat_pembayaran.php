@@ -74,7 +74,7 @@ class M_riwayat_pembayaran extends CI_Model
 				LEFT JOIN tipe_pembayaran ON tipe_pembayaran.id_tipe_pembayaran = setting_pembayaran.id_tipe_pembayaran
 	 			LEFT JOIN unit_pendidikan ON unit_pendidikan.id_unit_pendidikan = setting_pembayaran.id_unit_pendidikan
 	 			WHERE unit_pendidikan.id_unit_pendidikan = '$id_unit_pendidikan'
-	 			ORDER BY setting_pembayaran.id_setting_pembayaran ASC";
+	 			ORDER BY setting_pembayaran.id_setting_pembayaran DESC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
