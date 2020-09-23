@@ -25,6 +25,10 @@
 										<td>Nama Siswa</td>
 										<td><?php echo $m->nama_siswa; ?></td>
 										</tr>
+										</tr>
+										<td>Kelas</td>
+										<td><?php echo $m->nama_tipe_kelas . ' ' . $m->kelas; ?></td>
+										</tr>
 										<tr>
 											<td>Tanggal Lahir</td>
 											<td>
@@ -66,7 +70,7 @@
 								<input type="hidden" class="form-control" value="<?php echo $m->id_pembayaran; ?>" name="id_pembayaran" placeholder="ID">
 								<div class="form-group">
 									<label for="exampleInputNama">Setting Pembayaran <b style="color: red;">*</b></label>
-									<select class="form-control select2" name="id_setting_pembayaran" id="id_setting_pembayaran" data-placeholder="Select Please">
+									<select class="form-control select2" name="id_setting_pembayaran" id="id_setting_pembayaran" data-placeholder="Select Please" onclick="function tipe()">
 										<?php foreach ($setting_pembayaran as $s) { ?>
 											<option></option>
 											<option value="<?php echo $s->id_setting_pembayaran; ?>">Tahun Ajaran : <?php echo $s->tahun_ajaran; ?> || Tipe Pembayaran : <?php echo $s->tipe_pembayaran; ?> || Nominal Yang Harus Dibayar : Rp. <?php echo number_format($s->nominal, '2', ',', '.'); ?></option>
@@ -76,6 +80,9 @@
 								<div class="form-group">
 									<label for="exampleInputNama">Nominal <b style="color: red;">*</b></label>
 									<input type="text" class="form-control" name="nominal" id="nominal" placeholder="Nominal">
+									<input type="text" class="form-control" name="nis" id="nis" placeholder="nis" value="<?= $m->nis ?>">
+									<input type="text" class="form-control" name="id_tipe_pembayaran" id="id_tipe_pembayaran" placeholder="id_tipe_pembayaran">
+									<input type="text" class="form-control" name="id_tahun_ajaran" id="id_tahun_ajaran" placeholder="id_tahun_ajaran" value="<?= $m->id_tahun_ajaran ?>">
 								</div>
 								<div class="box-footer">
 									<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Tambah</button>
@@ -147,3 +154,10 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function tipe() {
+		// var id_tipe = document.querySelector("#id_tipe_pembayaran");
+		console.log('id_tipe');
+	}
+</script>

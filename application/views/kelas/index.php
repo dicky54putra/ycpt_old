@@ -1,7 +1,7 @@
 <div class="box">
   <div class="box-header">
     <div class="col-md-6" style="padding: 0;">
-        <a href="<?php echo base_url(); ?>kelas/add"><button class="form-control btn btn-primary" data-toggle="modal" ><i class="glyphicon glyphicon-plus-sign"></i> New Create</button></a>
+      <a href="<?php echo base_url(); ?>kelas/add"><button class="form-control btn btn-primary" data-toggle="modal"><i class="glyphicon glyphicon-plus-sign"></i> New Create</button></a>
     </div>
   </div>
   <div class="msg" style="display:none;">
@@ -18,25 +18,25 @@
         </tr>
       </thead>
       <tbody>
-      <?php
+        <?php
         $no = 1;
         foreach ($kelas as $k) {
         ?>
-        <tr>
-          <td><?php echo $no++; ?></td>
-          <td><?php echo $k->kelas; ?></td>
-          <td class="text-center" style="min-width:230px;">
-            <!-- <a href="<?php echo base_url(); ?>kelas/detail/<?php echo $k->id_kelas; ?>">
+          <tr>
+            <td><?php echo $no++; ?></td>
+            <td><?php echo $k->nama_tipe_kelas . ' ' . $k->kelas; ?></td>
+            <td class="text-center" style="min-width:230px;">
+              <!-- <a href="<?php echo base_url(); ?>kelas/detail/<?php echo $k->id_kelas; ?>">
               <button class="btn btn-info"><i class="glyphicon glyphicon-zoom-in"></i> Detail</button>
             </a> -->
-            <a href="<?php echo base_url(); ?>kelas/edit/<?php echo $k->id_kelas; ?>">
-              <button class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Update</button>
-            </a>
-            <a href="<?php echo base_url(); ?>kelas/delete/<?php echo $k->id_kelas; ?>" onclick="return confirm('Anda yakin akan menghapus data ini...!')">
-              <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-            </a>
-          </td>
-        </tr>
+              <a href="<?php echo base_url(); ?>kelas/edit/<?php echo $k->id_kelas; ?>">
+                <button class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Update</button>
+              </a>
+              <a href="<?php echo base_url(); ?>kelas/delete/<?php echo $k->id_kelas; ?>" onclick="return confirm('Anda yakin akan menghapus data ini...!')">
+                <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+              </a>
+            </td>
+          </tr>
         <?php } ?>
       </tbody>
     </table>
