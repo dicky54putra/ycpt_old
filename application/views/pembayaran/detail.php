@@ -2,6 +2,9 @@
 	<div class="box-header with-border">
 		<h3 class="box-title"></h3>
 	</div>
+	<div class="msg" style="display:none;">
+		<?php echo @$this->session->flashdata('msg'); ?>
+	</div>
 	<?php foreach ($pembayaran as $m) {
 	} ?>
 	<div class="row">
@@ -80,9 +83,7 @@
 								<div class="form-group">
 									<label for="exampleInputNama">Nominal <b style="color: red;">*</b></label>
 									<input type="text" class="form-control" name="nominal" id="nominal" placeholder="Nominal">
-									<input type="text" class="form-control" name="nis" id="nis" placeholder="nis" value="<?= $m->nis ?>">
-									<input type="text" class="form-control" name="id_tipe_pembayaran" id="id_tipe_pembayaran" placeholder="id_tipe_pembayaran">
-									<input type="text" class="form-control" name="id_tahun_ajaran" id="id_tahun_ajaran" placeholder="id_tahun_ajaran" value="<?= $m->id_tahun_ajaran ?>">
+									<input type="hidden" class="form-control" name="nis" id="nis" placeholder="nis" value="<?= $m->nis ?>">
 								</div>
 								<div class="box-footer">
 									<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Tambah</button>
@@ -99,9 +100,6 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<b>Detail Pembayaran : </b>
-				</div>
-				<div class="msg" style="display:none;">
-					<?php echo @$this->session->flashdata('msg'); ?>
 				</div>
 				<div class="panel-body">
 					<div class="row">

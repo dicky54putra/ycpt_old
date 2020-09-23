@@ -1,7 +1,7 @@
 <div class="box">
   <div class="box-header">
     <div class="col-md-6" style="padding: 0;">
-        <a href="<?php echo base_url(); ?>setting_pembayaran_psb/add"><button class="form-control btn btn-primary" data-toggle="modal" ><i class="glyphicon glyphicon-plus-sign"></i> New Create</button></a>
+      <a href="<?php echo base_url(); ?>setting_pembayaran_psb/add"><button class="form-control btn btn-primary" data-toggle="modal"><i class="glyphicon glyphicon-plus-sign"></i> New Create</button></a>
     </div>
   </div>
   <div class="msg" style="display:none;">
@@ -15,32 +15,43 @@
           <th>No</th>
           <th>Tahun Pelajaran</th>
           <th>Tipe Pembayaran</th>
+          <th>Jenis Kelamin</th>
           <th>Nominal</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
       </thead>
       <tbody>
-      <?php
+        <?php
         $no = 1;
         foreach ($setting_pembayaran_psb as $k) {
         ?>
-        <tr>
-          <td><?php echo $no++; ?></td>
-          <td><?php echo $k->tahun_ajaran; ?></td>
-          <td><?php echo $k->tipe_pembayaran; ?></td>
-          <td>Rp. <?php echo number_format($k->nominal,'2',',','.'); ?></td>
-          <td class="text-center" style="min-width:230px;">
-            <!-- <a href="<?php echo base_url(); ?>setting_pembayaran_psb/detail/<?php echo $k->id_setting_pembayaran_psb; ?>">
+          <tr>
+            <td><?php echo $no++; ?></td>
+            <td><?php echo $k->tahun_ajaran; ?></td>
+            <td><?php echo $k->tipe_pembayaran; ?></td>
+            <td>
+              <?php
+              if ($k->jenis_kelamin == 1) {
+                echo "Laki-laki";
+              } else if ($k->jenis_kelamin == 2) {
+                echo "Perempuan";
+              } else if ($k->jenis_kelamin == 0) {
+                echo " All";
+              } ?>
+            </td>
+            <td>Rp. <?php echo number_format($k->nominal, '2', ',', '.'); ?></td>
+            <td class="text-center" style="min-width:230px;">
+              <!-- <a href="<?php echo base_url(); ?>setting_pembayaran_psb/detail/<?php echo $k->id_setting_pembayaran_psb; ?>">
               <button class="btn btn-info"><i class="glyphicon glyphicon-zoom-in"></i> Detail</button>
             </a> -->
-            <a href="<?php echo base_url(); ?>setting_pembayaran_psb/edit/<?php echo $k->id_setting_pembayaran_psb; ?>">
-              <button class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Update</button>
-            </a>
-            <a href="<?php echo base_url(); ?>setting_pembayaran_psb/delete/<?php echo $k->id_setting_pembayaran_psb; ?>" onclick="return confirm('Anda yakin akan menghapus data ini...!')">
-              <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-            </a>
-          </td>
-        </tr>
+              <a href="<?php echo base_url(); ?>setting_pembayaran_psb/edit/<?php echo $k->id_setting_pembayaran_psb; ?>">
+                <button class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Update</button>
+              </a>
+              <a href="<?php echo base_url(); ?>setting_pembayaran_psb/delete/<?php echo $k->id_setting_pembayaran_psb; ?>" onclick="return confirm('Anda yakin akan menghapus data ini...!')">
+                <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+              </a>
+            </td>
+          </tr>
         <?php } ?>
       </tbody>
     </table>

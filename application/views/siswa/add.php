@@ -20,6 +20,11 @@
       $("#nama_ortu").focus()
       return false;
     }
+    if (!$("#id_tahun_ajaran").val()) {
+      alert('id_tahun_ajaran Tidak boleh kosong');
+      $("#id_tahun_ajaran").focus()
+      return false;
+    }
     if (!$("#alamat").val()) {
       alert('alamat Tidak boleh kosong');
       $("#alamat").focus()
@@ -53,6 +58,16 @@
           </div>
           <input type="text" name="tanggal_lahir" readonly class="form-control pull-right" id="datepicker">
         </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputNama">Tahun Ajaran <b style="color: red;">*</b></label>
+        <select class="form-control select2" name="id_tahun_ajaran" id="id_tahun_ajaran" data-placeholder="Select Please">
+          <option>Pilih Tahun Ajaran</option>
+          <?php
+          foreach ($tahun_ajaran as $ta) { ?>
+            <option value="<?= $ta->id_tahun_ajaran ?>"><?= $ta->tahun_ajaran ?></option>
+          <?php } ?>
+        </select>
       </div>
       <div class="form-group">
         <label for="exampleInputNama">Nama Orang Tua / Wali <b style="color: red;">*</b></label>

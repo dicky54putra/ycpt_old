@@ -20,6 +20,7 @@
           <th>Nama Orang Tua/Wali</th>
           <th>Alamat</th>
           <th>Kelas</th>
+          <th>Tahun Masuk</th>
           <th>Status</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
@@ -53,6 +54,7 @@
                   echo 'Belum ada kelas';
                 }
                 ?>
+            <td><?php echo $k->tahun_ajaran; ?></td>
             </td>
             <td><?php echo $k->status; ?></td>
             <td class="text-center" style="min-width:230px;">
