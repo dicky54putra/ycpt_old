@@ -77,8 +77,10 @@ class Riwayat_Pembayaran extends AUTH_Controller
 		// exit();
 
 		$data['siswa'] 				= $this->M_riwayat_pembayaran->select_all_detail_siswa1($nis);
+		foreach ($data['siswa'] as $k) {
+		}
 		// $data['total_pembayaran']= $this->M_riwayat_pembayaran->select_all_total_bayar_by_tipe($nis);
-		$data['setting_pembayaran'] = $this->M_riwayat_pembayaran->select_all_setting_bayar1($nis, $id_unit_pendidikan);
+		$data['setting_pembayaran'] = $this->M_riwayat_pembayaran->select_all_setting_bayar1($nis, $id_unit_pendidikan, $k->id_tahun_ajaran, $k->id_tipe_kelas);
 		$this->template->views('riwayat_pembayaran/detail_pembayaran', $data);
 	}
 

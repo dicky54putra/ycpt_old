@@ -99,6 +99,7 @@
 												<th>No</th>
 												<th>NIS</th>
 												<th>Nama Siswa</th>
+												<th>Jenis Kelamin</th>
 												<th style="text-align: center;">Aksi</th>
 											</tr>
 										</thead>
@@ -111,6 +112,7 @@
 													<td><?php echo $no++; ?></td>
 													<td><?php echo $k->nis; ?></td>
 													<td><?php echo $k->nama_siswa; ?></td>
+													<td><?php echo ($k->jenis_kelamin == 1) ? 'Laki-laki' : $retVal = ($k->jenis_kelamin == 2) ? 'Perempuan' : ''; ?></td>
 													<td class="text-center" style="min-width:230px;">
 														<a class="btn btn-danger" href="<?php echo base_url(); ?>kelas_siswa/delete_siswa/<?php echo $k->id_kelas_siswa_detail; ?>/<?php echo $m->id_kelas_siswa; ?>" onclick="return confirm('Anda yakin akan menghapus data ini...!')"><i class="glyphicon glyphicon-trash"></i> Delete
 														</a>

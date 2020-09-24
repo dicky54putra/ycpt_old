@@ -8,7 +8,7 @@
     <?php echo @$this->session->flashdata('msg'); ?>
   </div>
   <!-- /.box-header -->
-  <div class="box-body">
+  <div class="box-body" style="overflow: auto;">
     <table id="list-data" class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -17,6 +17,7 @@
           <th>Nama Siswa</th>
           <th>Tempat Lahir</th>
           <th>Tanggal Lahir</th>
+          <th>Jenis Kelamin</th>
           <th>Nama Orang Tua/Wali</th>
           <th>Alamat</th>
           <th>Kelas</th>
@@ -46,6 +47,7 @@
               }
               ?>
             </td>
+            <td><?php echo ($k->jenis_kelamin == 1) ? 'Laki-laki' : $retVal = ($k->jenis_kelamin == 2) ? 'Perempuan' : ''; ?></td>
             <td><?php echo $k->nama_ortu; ?></td>
             <td><?php echo $k->alamat; ?></td>
             <td><?php if (!empty($k->kelas)) {
