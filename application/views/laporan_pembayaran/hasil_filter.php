@@ -72,7 +72,7 @@
                 }
                 ?>
               </td>
-              <td><?php echo $k->tahun_ajaran; ?> - <?php echo $k->kelas; ?></td>
+              <td><?php echo $k->tahun_ajaran; ?> - <?php echo $k->nama_tipe_kelas . ' ' . $k->kelas; ?></td>
               <td><?php echo $k->nis; ?> - <?php echo $k->nama_siswa; ?></td>
               <td><?php echo $k->tipe_pembayaran; ?></td>
               <td>Rp. <?php echo number_format($k->nominal, '2', ',', '.'); ?></td>
