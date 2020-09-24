@@ -75,6 +75,7 @@ class Siswa extends AUTH_Controller
 			'alamat'			=> $this->input->post('alamat'),
 			'id_unit_pendidikan' => $this->input->post('id_unit_pendidikan'),
 			'id_tahun_ajaran' => $this->input->post('id_tahun_ajaran'),
+			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'status'			=> $this->input->post('status')
 
 		);
@@ -111,6 +112,7 @@ class Siswa extends AUTH_Controller
 		$alamat				= $this->input->post('alamat');
 		$id_unit_pendidikan	= $this->input->post('id_unit_pendidikan');
 		$id_tahun_ajaran	= $this->input->post('id_tahun_ajaran');
+		$jenis_kelamin	= $this->input->post('jenis_kelamin');
 		$status				= $this->input->post('status');
 
 		$data = array(
@@ -123,6 +125,7 @@ class Siswa extends AUTH_Controller
 			'alamat' 				=> $alamat,
 			'id_unit_pendidikan' 	=> $id_unit_pendidikan,
 			'id_tahun_ajaran' 	    => $id_tahun_ajaran,
+			'jenis_kelamin' 	    => $jenis_kelamin,
 			'status' 				=> $status
 
 		);

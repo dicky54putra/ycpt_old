@@ -17,6 +17,14 @@ class M_riwayat_pembayaran extends CI_Model
 
 	public function select_all_setting_bayar($nis, $id, $id_tahun_ajaran, $tipe_kelas)
 	{
+		$siswa_detail = $this->db->get_where('siswa', ['nis' => $nis])->row();
+		$kelas_siswa_detail = $this->db->query("SELECT * FROM `kelas_siswa_detail` LEFT JOIN kelas_siswa ON kelas_siswa.id_kelas_siswa = kelas_siswa_detail.id_kelas_siswa LEFT JOIN kelas ON kelas.id_kelas = kelas_siswa.id_kelas WHERE id_siswa = $siswa_detail->id_siswa")->result();
+		$id_tipe_kelas = '';
+		foreach ($kelas_siswa_detail as $k) {
+			$id_tipe_kelas .= $k->id_tipe_kelas . ',';
+		}
+		$itk = substr($id_tipe_kelas, 0, -1);
+		// var_dump($itk);
 		$sql = "SELECT * FROM setting_pembayaran 
 	 			LEFT JOIN tahun_ajaran ON tahun_ajaran.id_tahun_ajaran = setting_pembayaran.id_tahun_ajaran
 				LEFT JOIN tipe_pembayaran ON tipe_pembayaran.id_tipe_pembayaran = setting_pembayaran.id_tipe_pembayaran
@@ -24,7 +32,7 @@ class M_riwayat_pembayaran extends CI_Model
 				LEFT JOIN user ON user.id_unit_pendidikan = unit_pendidikan.id_unit_pendidikan
 	 			WHERE user.id_user = '$id' 
 				AND setting_pembayaran.id_tahun_ajaran >= '$id_tahun_ajaran'
-				AND setting_pembayaran.id_tipe_kelas = '$tipe_kelas'
+				AND setting_pembayaran.id_tipe_kelas IN ($itk) 
 	 			ORDER BY setting_pembayaran.id_setting_pembayaran DESC";
 		$data = $this->db->query($sql);
 		return $data->result();
@@ -74,14 +82,24 @@ class M_riwayat_pembayaran extends CI_Model
 
 	public function select_all_setting_bayar1($nis, $id_unit_pendidikan, $id_tahun_ajaran, $tipe_kelas)
 	{
+		$siswa_detail = $this->db->get_where('siswa', ['nis' => $nis])->row();
+		$kelas_siswa_detail = $this->db->query("SELECT * FROM `kelas_siswa_detail` LEFT JOIN kelas_siswa ON kelas_siswa.id_kelas_siswa = kelas_siswa_detail.id_kelas_siswa LEFT JOIN kelas ON kelas.id_kelas = kelas_siswa.id_kelas WHERE id_siswa = $siswa_detail->id_siswa")->result();
+		$id_tipe_kelas = '';
+		foreach ($kelas_siswa_detail as $k) {
+			$id_tipe_kelas .= $k->id_tipe_kelas . ',';
+		}
+		$itk = substr($id_tipe_kelas, 0, -1);
+		// var_dump($itk);
 		$sql = "SELECT * FROM setting_pembayaran 
 	 			LEFT JOIN tahun_ajaran ON tahun_ajaran.id_tahun_ajaran = setting_pembayaran.id_tahun_ajaran
 				LEFT JOIN tipe_pembayaran ON tipe_pembayaran.id_tipe_pembayaran = setting_pembayaran.id_tipe_pembayaran
 	 			LEFT JOIN unit_pendidikan ON unit_pendidikan.id_unit_pendidikan = setting_pembayaran.id_unit_pendidikan
 	 			WHERE unit_pendidikan.id_unit_pendidikan = '$id_unit_pendidikan'
 				AND setting_pembayaran.id_tahun_ajaran >='$id_tahun_ajaran'
-				AND setting_pembayaran.id_tipe_kelas = '$tipe_kelas'
-	 			ORDER BY setting_pembayaran.id_setting_pembayaran DESC";
+				AND setting_pembayaran.id_tipe_kelas IN ($itk) 
+				ORDER BY setting_pembayaran.id_setting_pembayaran DESC";
+		// echo $siswa_detail->id_siswa;
+		// die;
 		$data = $this->db->query($sql);
 		return $data->result();
 	}

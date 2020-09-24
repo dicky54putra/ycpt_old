@@ -60,9 +60,17 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputNama">Tahun Ajaran <b style="color: red;">*</b></label>
+        <label for="exampleInputNama">Jenis Kelamin <b style="color: red;">*</b></label>
+        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select Please">
+          <option>Pilih Jenis Kelamin</option>
+          <option value="1">Laki-laki</option>
+          <option value="2">Perempuan</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputNama">Tahun Pelajaran <b style="color: red;">*</b></label>
         <select class="form-control select2" name="id_tahun_ajaran" id="id_tahun_ajaran" data-placeholder="Select Please">
-          <option>Pilih Tahun Ajaran</option>
+          <option>Pilih Tahun Pelajaran</option>
           <?php
           foreach ($tahun_ajaran as $ta) { ?>
             <option value="<?= $ta->id_tahun_ajaran ?>"><?= $ta->tahun_ajaran ?></option>
