@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title></title>
   <!-- Tell the browser to be responsive to screen width -->
@@ -28,49 +29,56 @@
          folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
 </head>
+
 <body onLoad="window.print()">
-<div class="box">
-  <div class="box-header">
-    <div class="col-md-12" style="padding: 0;">
-      <?php foreach ($pendaftaran1 as $k2) { } ?>
-      <h3 align="center">
-        DATA PENDAFTARAN TAHUN PELAJARAN <?php echo $k2->tahun_ajaran; ?><br>
-        <?php echo $k2->unit_pendidikan; ?> 
-      </h3>
+  <div class="box">
+    <div class="box-header">
+      <div class="col-md-12" style="padding: 0;">
+        <?php
+        // foreach ($pendaftaran1 as $k2) {
+        // }
+        ?>
+        <h3 align="center">
+          DATA PENDAFTARAN TAHUN PELAJARAN <?php echo $pendaftaran1->tahun_ajaran; ?><br>
+          <?php //echo $k2->unit_pendidikan; 
+          ?>
+        </h3>
+      </div>
+    </div>
+    <!-- /.box-header -->
+
+    <div class="box-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nomor Pendaftaran</th>
+            <th>Nama Lengkap</th>
+            <th>Tempat dan Tanggal Lahir</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $no = 1;
+          foreach ($pendaftaran as $k) { ?>
+            <tr>
+              <td><?php echo $no++; ?></td>
+              <td><?php echo $k->nomor_daftar; ?></td>
+              <td><?php echo $k->nama_lengkap; ?></td>
+              <td>
+                <?php echo $k->tempat_lahir; ?>,
+                <?php $data     = $k->tanggal_lahir;
+                $datanew  = new DateTime($data);
+                echo $datanew->format('d F Y');
+                ?>
+              </td>
+              <td><?php echo $k->status; ?></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
     </div>
   </div>
-  <!-- /.box-header -->
-  
-  <div class="box-body">
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nomor Pendaftaran</th>
-          <th>Nama Lengkap</th>
-          <th>Tempat dan Tanggal Lahir</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php $no = 1; foreach ($pendaftaran as $k) { ?>
-        <tr>
-          <td><?php echo $no++; ?></td>
-          <td><?php echo $k->nomor_daftar; ?></td>
-          <td><?php echo $k->nama_lengkap; ?></td>
-          <td>
-            <?php echo $k->tempat_lahir; ?>, 
-            <?php $data     = $k->tanggal_lahir;
-              $datanew  = new DateTime($data); 
-              echo $datanew->format('d F Y');
-            ?>
-          </td>
-          <td><?php echo $k->status; ?></td>
-        </tr>
-      <?php } ?>
-      </tbody>
-    </table>
-  </div>
-</div>
 </body>
+
 </html>

@@ -22,6 +22,8 @@ class M_laporan_pembayaran extends CI_Model
 				WHERE pembayaran.tanggal BETWEEN '$dari_tanggal' AND '$sampai_tanggal' 
 				AND user.id_user = '$id'
 				ORDER BY pembayaran.tanggal ASC";
+		// echo $sql;
+		// die;
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
@@ -43,6 +45,8 @@ class M_laporan_pembayaran extends CI_Model
 				WHERE pembayaran.tanggal BETWEEN '$dari_tanggal' AND '$sampai_tanggal'
 				AND user.id_user = '$id'
 				ORDER BY pembayaran.tanggal ASC";
+		// echo $sql;
+		// die;
 		$data = $this->db->query($sql);
 		return $data->result();
 	}

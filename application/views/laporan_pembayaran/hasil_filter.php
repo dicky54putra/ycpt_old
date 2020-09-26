@@ -25,6 +25,9 @@
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Filter</button>
+              <a href="<?php echo base_url(); ?>Laporan_pembayaran/cetak/<?= $_POST['dari_tanggal'] . '/' . $_POST['sampai_tanggal'] ?>" target="_BLANK">
+                <button type="button" class="btn btn-basic"><i class="glyphicon glyphicon-print"></i> Cetak</button>
+              </a>
               <!-- <a href="#" target="_BLANK">
               <button type="submit" class="btn btn-basic"><i class="glyphicon glyphicon-print"></i> Cetak</button>
             </a> -->

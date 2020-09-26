@@ -151,9 +151,13 @@ class Riwayat_Pembayaran extends AUTH_Controller
 
 		);
 
-		$this->M_riwayat_pembayaran->insert_pembayaran($data1);
-		$this->M_riwayat_pembayaran->insert_detail_pembayaran($data2);
-		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil disimpan'));
+		if ($id_kelas_siswa_detail == null) {
+			$this->session->set_flashdata('msg', show_err_msg('Data Kelas siswa detail null, mungkin siswa belum masuk ke kelas di tahun pembayaran yang sedang dibayarkan.'));
+		} else {
+			$this->M_riwayat_pembayaran->insert_pembayaran($data1);
+			$this->M_riwayat_pembayaran->insert_detail_pembayaran($data2);
+			$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil disimpan'));
+		}
 		redirect('riwayat_pembayaran/detail/' . $nis . '/' . $id_tahun_ajaran_siswa);
 	}
 

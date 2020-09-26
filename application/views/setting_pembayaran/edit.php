@@ -56,8 +56,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="exampleInputNama">Tipe Kelas<b style="color: red;">*</b></label>
-          <select class="form-control select2" name="id_tipe_kelas" id="id_tipe_kelas" data-placeholder="Select Tipe Pembayaran">
+          <label for="exampleInputNama">Kelas<b style="color: red;">*</b></label>
+          <select class="form-control select2" name="id_tipe_kelas" id="id_tipe_kelas" data-placeholder="Select Kelas">
             <option></option>
             <?php foreach ($tipe_kelas as $j) { ?>
               <option value="<?php echo $j->id_tipe_kelas; ?>" <?php if ($j->id_tipe_kelas == $k->id_tipe_kelas) {

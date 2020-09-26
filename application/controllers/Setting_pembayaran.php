@@ -33,6 +33,7 @@ class Setting_pembayaran extends AUTH_Controller
 		$data['deskripsi'] 			= "Manage Setting Pembayaran";
 		$data['tahun_ajaran'] 		= $this->M_setting_pembayaran->select_all_tahun_ajaran();
 		$data['tipe_pembayaran'] 	= $this->M_setting_pembayaran->select_all_tipe_pembayaran();
+		$data['tipe_kelas'] = $this->db->get('tipe_kelas')->result();
 		$data['user'] 				= $this->M_setting_pembayaran->select_all_user($id);
 		$this->template->views('setting_pembayaran/add', $data);
 	}

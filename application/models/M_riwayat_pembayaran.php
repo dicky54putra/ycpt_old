@@ -32,7 +32,7 @@ class M_riwayat_pembayaran extends CI_Model
 				LEFT JOIN user ON user.id_unit_pendidikan = unit_pendidikan.id_unit_pendidikan
 	 			WHERE user.id_user = '$id' 
 				AND setting_pembayaran.id_tahun_ajaran >= '$id_tahun_ajaran'
-				AND setting_pembayaran.id_tipe_kelas IN ($itk) 
+				AND setting_pembayaran.id_tipe_kelas IN (0,$itk) 
 	 			ORDER BY setting_pembayaran.id_setting_pembayaran DESC";
 		$data = $this->db->query($sql);
 		return $data->result();
@@ -96,7 +96,7 @@ class M_riwayat_pembayaran extends CI_Model
 	 			LEFT JOIN unit_pendidikan ON unit_pendidikan.id_unit_pendidikan = setting_pembayaran.id_unit_pendidikan
 	 			WHERE unit_pendidikan.id_unit_pendidikan = '$id_unit_pendidikan'
 				AND setting_pembayaran.id_tahun_ajaran >='$id_tahun_ajaran'
-				AND setting_pembayaran.id_tipe_kelas IN ($itk) 
+				AND setting_pembayaran.id_tipe_kelas IN (0,$itk) 
 				ORDER BY setting_pembayaran.id_setting_pembayaran DESC";
 		// echo $siswa_detail->id_siswa;
 		// die;
