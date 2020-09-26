@@ -98,7 +98,7 @@ class M_kelas_siswa extends CI_Model
 
 	public function select_all_siswa_add($id_user, $id_kelas_siswa, $id_tahun_ajaran)
 	{
-		$cek = $this->db->query("SELECT * FROM `kelas_siswa_detail` LEFT JOIN kelas_siswa ON kelas_siswa.id_kelas_siswa = kelas_siswa_detail.id_kelas_siswa WHERE kelas_siswa_detail.id_kelas_siswa = $id_kelas_siswa OR kelas_siswa.id_tahun_ajaran != $id_tahun_ajaran")->result();
+		$cek = $this->db->query("SELECT * FROM `kelas_siswa_detail` LEFT JOIN kelas_siswa ON kelas_siswa.id_kelas_siswa = kelas_siswa_detail.id_kelas_siswa WHERE kelas_siswa_detail.id_kelas_siswa = $id_kelas_siswa OR kelas_siswa.id_tahun_ajaran >= $id_tahun_ajaran")->result();
 		// 
 		$siswa_kelas_ini = '';
 		foreach ($cek as $k) {
