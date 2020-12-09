@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title></title>
   <!-- Tell the browser to be responsive to screen width -->
@@ -28,60 +29,65 @@
          folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
 </head>
+
 <body onLoad="window.print()">
-<div class="box">
-  <div class="box-header">
-    <div class="col-md-12" style="padding: 0;">
-      <?php foreach ($kelas1 as $k3) { } ?>
-      <?php foreach ($setting_pembayaran1 as $k1) { } ?>
-      <?php foreach ($setting_pembayaran as $k2) { } ?>
-      <h3 align="center">
-        DATA SISWA LUNAS DAN BELUM LUNAS <?php echo $k1->tipe_pembayaran; ?><br>
-        <?php echo $k2->unit_pendidikan; ?> TAHUN PELAJARAN <?php echo $k1->tahun_ajaran; ?>
-      </h3>
+  <div class="box">
+    <div class="box-header">
+      <div class="col-md-12" style="padding: 0;">
+        <?php foreach ($kelas1 as $k3) {
+        } ?>
+        <?php foreach ($setting_pembayaran1 as $k1) {
+        } ?>
+        <?php foreach ($setting_pembayaran as $k2) {
+        } ?>
+        <h3 align="center">
+          DATA SISWA LUNAS DAN BELUM LUNAS <?php echo $k1->tipe_pembayaran; ?><br>
+          <?php echo $k2->unit_pendidikan; ?> TAHUN PELAJARAN <?php echo $k1->tahun_ajaran; ?>
+        </h3>
+      </div>
     </div>
-  </div>
-  <!-- /.box-header -->
-  
-  <div class="box-body">
-    <table class="table">
-      <tr>
-        <td width="10%"><b>Kelas</b></td>
-        <td width="2%"> : </td>
-        <td><b><?php echo $k3->kelas; ?></b></td>
-      </tr>
-    </table>
-    <table class="table table-bordered table-striped">
-      <thead>
+    <!-- /.box-header -->
+
+    <div class="box-body">
+      <table class="table">
         <tr>
-          <th>No</th>
-          <th>NIS</th>
-          <th>Nama Siswa</th>
-          <!-- <th>Tipe Pembayaran</th> -->
-          <th>Nominal</th>
-          <th>Status</th>
+          <td width="10%"><b>Kelas</b></td>
+          <td width="2%"> : </td>
+          <td><b><?php echo $k3->nama_tipe_kelas . ' ' . $k3->kelas; ?></b></td>
         </tr>
-      </thead>
-      <tbody>
-        <?php $no = 1; foreach ($kelas as $k) { ?>
-        <tr>
-          <td><?php echo $no++; ?></td>
-          <td><?php echo $k->nis; ?></td>
-          <td><?php echo $k->nama_siswa; ?></td>
-          <!-- <td>
+      </table>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>NIS</th>
+            <th>Nama Siswa</th>
+            <!-- <th>Tipe Pembayaran</th> -->
+            <th>Nominal</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $no = 1;
+          foreach ($kelas as $k) { ?>
+            <tr>
+              <td><?php echo $no++; ?></td>
+              <td><?php echo $k->nis; ?></td>
+              <td><?php echo $k->nama_siswa; ?></td>
+              <!-- <td>
             <?php echo $k1->tipe_pembayaran; ?>
           </td> -->
-          <td>
-            Rp. <?php echo number_format($k1->nominal,2,',','.'); ?>
-          </td>
-          <td>
-            <?php 
-              // error_reporting(0);
-              // $id_tahun_ajaran    = $this->uri->segment(4);
-              $id_tipe_pembayaran = $k1->id_tipe_pembayaran;
-              $nis                = $k->nis;
+              <td>
+                Rp. <?php echo number_format($k1->nominal, 2, ',', '.'); ?>
+              </td>
+              <td>
+                <?php
+                // error_reporting(0);
+                // $id_tahun_ajaran    = $this->uri->segment(4);
+                $id_tipe_pembayaran = $k1->id_tipe_pembayaran;
+                $nis                = $k->nis;
 
-              $query = $this->db->query("SELECT a.*, SUM(a.nominal) AS TOTAL from detail_pembayaran a
+                $query = $this->db->query("SELECT a.*, SUM(a.nominal) AS TOTAL from detail_pembayaran a
                                          LEFT JOIN pembayaran b on b.id_pembayaran = a.id_pembayaran
                                          LEFT JOIN kelas_siswa_detail f on f.id_kelas_siswa_detail = b.id_kelas_siswa_detail
                                          LEFT JOIN siswa c on c.id_siswa = f.id_siswa
@@ -89,22 +95,23 @@
                                          LEFT JOIN tipe_pembayaran e on e.id_tipe_pembayaran = d.id_tipe_pembayaran
                                          WHERE c.nis = '$nis' and e.id_tipe_pembayaran = '$id_tipe_pembayaran'");
 
-              foreach ($query->result() as $row){ }
-            ?>
-            <?php
-              $global_pembayaran  = $k1->nominal;
-              $pembayaran         = $row->TOTAL;
-              $hasil = $global_pembayaran-$pembayaran;
-              if ($hasil == 0) {
-                echo 'LUNAS';
-              }else{
-                echo 'BELUM LUNAS ';
-              }
-            ?>
-          </td>
-        </tr>
-      <?php } ?>
-      <!-- <tr>
+                foreach ($query->result() as $row) {
+                }
+                ?>
+                <?php
+                $global_pembayaran  = $k1->nominal;
+                $pembayaran         = $row->TOTAL;
+                $hasil = $global_pembayaran - $pembayaran;
+                if ($hasil == 0) {
+                  echo 'LUNAS';
+                } else {
+                  echo 'BELUM LUNAS ';
+                }
+                ?>
+              </td>
+            </tr>
+          <?php } ?>
+          <!-- <tr>
         <td colspan="3"><b>JUMLAH NOMINAL STATUS LUNAS</b></td>
         <td colspan="2"><b>Rp. </b></td>
       </tr>
@@ -112,9 +119,10 @@
         <td colspan="3"><b>JUMLAH NOMINAL STATUS BELUM LUNAS</b></td>
         <td colspan="2"><b>Rp. </b></td>
       </tr> -->
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 </body>
+
 </html>

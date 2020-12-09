@@ -1,14 +1,11 @@
 <script type="text/javascript">
-  function cekform()
-  {
-    if (!$("#id_tahun_ajaran").val()) 
-    {
+  function cekform() {
+    if (!$("#id_tahun_ajaran").val()) {
       alert('Tahun Ajaran Tidak boleh kosong');
       $("#id_tahun_ajaran").focus()
       return false;
     }
-    if (!$("#id_tipe_pembayaran").val()) 
-    {
+    if (!$("#id_tipe_pembayaran").val()) {
       alert('Tipe Pembayaran Tidak boleh kosong');
       $("#id_tipe_pembayaran").focus()
       return false;
@@ -19,10 +16,14 @@
     //   $("#nominal").focus()
     //   return false;
     // }
-    if (!$("#id_unit_pendidikan").val()) 
-    {
+    if (!$("#id_unit_pendidikan").val()) {
       alert('Unit Pendidikan Tidak boleh kosong');
       $("#id_unit_pendidikan").focus()
+      return false;
+    }
+    if (!$("#jenis_kelamin").val()) {
+      alert('Jenis Kelamin Tidak boleh kosong');
+      $("#jenis_kelamin").focus()
       return false;
     }
   }
@@ -38,7 +39,7 @@
         <select class="form-control select2" name="id_tahun_ajaran" id="id_tahun_ajaran" data-placeholder="Select Tahun Ajaran">
           <?php foreach ($tahun_ajaran as $s) { ?>
             <!-- <option></option> -->
-            <option value="<?php echo $s->id_tahun_ajaran; ?>" ><?php echo $s->tahun_ajaran; ?></option>
+            <option value="<?php echo $s->id_tahun_ajaran; ?>"><?php echo $s->tahun_ajaran; ?></option>
           <?php } ?>
         </select>
       </div>
@@ -47,15 +48,25 @@
         <select class="form-control select2" name="id_tipe_pembayaran" id="id_tipe_pembayaran" data-placeholder="Select Tipe Pembayaran">
           <?php foreach ($tipe_pembayaran as $s) { ?>
             <option></option>
-            <option value="<?php echo $s->id_tipe_pembayaran; ?>" ><?php echo $s->tipe_pembayaran; ?></option>
+            <option value="<?php echo $s->id_tipe_pembayaran; ?>"><?php echo $s->tipe_pembayaran; ?></option>
           <?php } ?>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="jenis_kelamin">Jenis Kelamin<b style="color: red;">*</b></label>
+        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select Jenis Kelamin">
+          <option>Select Jenis Kelamin</option>
+          <option value="0">All</option>
+          <option value="1">Laki-Laki</option>
+          <option value="2">Perempuan</option>
         </select>
       </div>
       <div class="form-group">
         <label for="exampleInputNama">Nominal <b style="color: red;">*</b></label>
         <input type="text" class="form-control" name="nominal" placeholder="Nominal">
       </div>
-      <?php foreach ($user as $s) { }?>
+      <?php foreach ($user as $s) {
+      } ?>
       <input type="hidden" class="form-control" name="id_unit_pendidikan" value="<?php echo $s->id_unit_pendidikan; ?>" id="id_unit_pendidikan" placeholder="Unit Pendidikan">
     </div>
     <!-- /.box-body -->

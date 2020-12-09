@@ -1,14 +1,11 @@
 <script type="text/javascript">
-  function cekform()
-  {
-    if (!$("#id_tahun_ajaran").val()) 
-    {
+  function cekform() {
+    if (!$("#id_tahun_ajaran").val()) {
       alert('Tahun Pelajaran Tidak boleh kosong');
       $("#id_tahun_ajaran").focus()
       return false;
     }
-    if (!$("#id_kelas").val()) 
-    {
+    if (!$("#id_kelas").val()) {
       alert('Kelas Tidak boleh kosong');
       $("#id_kelas").focus()
       return false;
@@ -25,7 +22,7 @@
         <label for="exampleInputNama">Tahun Pelajaran <b style="color: red;">*</b></label>
         <select class="form-control select2" name="id_tahun_ajaran" id="id_tahun_ajaran" data-placeholder="Select Please">
           <?php foreach ($tahun_ajaran as $t) { ?>
-            <option value="<?php echo $t->id_tahun_ajaran; ?>" ><?php echo $t->tahun_ajaran; ?></option>
+            <option value="<?php echo $t->id_tahun_ajaran; ?>"><?php echo $t->tahun_ajaran; ?></option>
           <?php } ?>
         </select>
       </div>
@@ -34,11 +31,12 @@
         <select class="form-control select2" name="id_kelas" id="id_kelas" data-placeholder="Select Please">
           <?php foreach ($kelas as $s) { ?>
             <option></option>
-            <option value="<?php echo $s->id_kelas; ?>" ><?php echo $s->kelas; ?></option>
+            <option value="<?php echo $s->id_kelas; ?>"><?php echo $s->nama_tipe_kelas . ' ' . $s->kelas; ?></option>
           <?php } ?>
         </select>
       </div>
-      <?php foreach ($unit_pendidikan as $k) { } ?>
+      <?php foreach ($unit_pendidikan as $k) {
+      } ?>
       <input type="hidden" class="form-control" name="id_unit_pendidikan" value="<?php echo $k->id_unit_pendidikan; ?>" id="id_unit_pendidikan" placeholder="Unit Pendidikan">
     </div>
     <!-- /.box-body -->

@@ -133,7 +133,11 @@ class Kelas_siswa extends AUTH_Controller
 		$data['deskripsi'] 	= "Manage Data Kelas Siswa";
 
 		$data['kelas'] 		= $this->M_kelas_siswa->select_all_kelas_siswa1($id);
-		$data['siswa'] 		= $this->M_kelas_siswa->select_all_siswa($id_user);
+		foreach ($data['kelas'] as $kls) {
+		}
+		// echo $kls->id_tahun_ajaran;
+		// die;
+		$data['siswa'] 		= $this->M_kelas_siswa->select_all_siswa_add($id_user, $id, $kls->id_tahun_ajaran);
 		$data['kelas_siswa'] = $this->M_kelas_siswa->select_all_kelas_siswa_detail($id);
 		$this->template->views('kelas_siswa/detail', $data);
 	}

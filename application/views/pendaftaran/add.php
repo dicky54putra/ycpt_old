@@ -1,44 +1,36 @@
 <script type="text/javascript">
-  function cekform()
-  {
-    if (!$("#nomor_daftar").val()) 
-    {
+  function cekform() {
+    if (!$("#nomor_daftar").val()) {
       alert('Nomor Pendaftaran Tidak boleh kosong');
       $("#nomor_daftar").focus()
       return false;
     }
-    if (!$("#nama_lengkap").val()) 
-    {
+    if (!$("#nama_lengkap").val()) {
       alert('Nama Lengkap Tidak boleh kosong');
       $("#nama_lengkap").focus()
       return false;
     }
-    if (!$("#tempat_lahir").val()) 
-    {
+    if (!$("#tempat_lahir").val()) {
       alert('Tempat Lahir Tidak boleh kosong');
       $("#tempat_lahir").focus()
       return false;
     }
-    if (!$("#nama_ortu").val()) 
-    {
+    if (!$("#nama_ortu").val()) {
       alert('Nama Ortu Tidak boleh kosong');
       $("#nama_ortu").focus()
       return false;
     }
-    if (!$("#alamat").val()) 
-    {
+    if (!$("#alamat").val()) {
       alert('alamat Tidak boleh kosong');
       $("#alamat").focus()
       return false;
     }
-    if (!$("#sekolah_asal").val()) 
-    {
+    if (!$("#sekolah_asal").val()) {
       alert('Sekolah Asal Tidak boleh kosong');
       $("#sekolah_asal").focus()
       return false;
     }
-    if (!$("#status").val()) 
-    {
+    if (!$("#status").val()) {
       alert('Status Tidak boleh kosong');
       $("#status").focus()
       return false;
@@ -51,11 +43,12 @@
   </div>
   <form role="form" action="<?php echo base_url(); ?>pendaftaran/save" method="POST" onsubmit="return cekform();">
     <div class="box-body">
-      <?php foreach ($tahun_ajaran as $t) { } ?>
+      <?php foreach ($tahun_ajaran as $t) {
+      } ?>
       <input type="hidden" class="form-control" name="id_tahun_ajaran" value="<?php echo $t->id_tahun_ajaran; ?>" placeholder="Tahun Pelajaran">
-       <div class="form-group">
+      <div class="form-group">
         <label for="exampleInputNama">Nomor Pendaftaran <b style="color: red;">*</b></label>
-        <input type="text" class="form-control" name="nomor_daftar" id="nomor_daftar" placeholder="Nomor Pendaftaran"  value="<?php echo $kodeunik; ?>">
+        <input type="text" class="form-control" name="nomor_daftar" id="nomor_daftar" placeholder="Nomor Pendaftaran" value="<?php echo $kodeunik; ?>">
       </div>
       <div class="form-group">
         <label>Tanggal Daftar <b style="color: red;">*</b></label>
@@ -84,6 +77,14 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="exampleInputNama">Jenis Kelamin <b style="color: red;">*</b></label>
+        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Select Please">
+          <option>Pilih Jenis Kelamin</option>
+          <option value="1">Laki-laki</option>
+          <option value="2">Perempuan</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label for="exampleInputNama">Nama Orang Tua / Wali <b style="color: red;">*</b></label>
         <input type="text" class="form-control" name="nama_ortu" id="nama_ortu" placeholder="Nama Orang Tua / Wali">
       </div>
@@ -105,7 +106,8 @@
           <option>Cancel</option>
         </select>
       </div> -->
-      <?php foreach ($unit_pendidikan as $k) { } ?>
+      <?php foreach ($unit_pendidikan as $k) {
+      } ?>
       <input type="hidden" class="form-control" name="id_unit_pendidikan" value="<?php echo $k->id_unit_pendidikan; ?>" id="id_unit_pendidikan" placeholder="Unit Pendidikan">
     </div>
     <div class="box-footer">

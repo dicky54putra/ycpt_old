@@ -8,7 +8,7 @@
     <?php echo @$this->session->flashdata('msg'); ?>
   </div>
   <!-- /.box-header -->
-  <div class="box-body">
+  <div class="box-body" style="overflow: auto;">
     <table id="list-data" class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -17,9 +17,11 @@
           <th>Nama Siswa</th>
           <th>Tempat Lahir</th>
           <th>Tanggal Lahir</th>
+          <th>Jenis Kelamin</th>
           <th>Nama Orang Tua/Wali</th>
           <th>Alamat</th>
           <th>Kelas</th>
+          <th>Tahun Masuk</th>
           <th>Status</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
@@ -45,27 +47,31 @@
               }
               ?>
             </td>
-            <td><?php echo $k->nama_ortu; ?></td>
-            <td><?php echo $k->alamat; ?></td>
-            <td><?php if (!empty($k->kelas)) {
-                  echo $k->nama_tipe_kelas . ' ' . $k->kelas;
-                } else {
-                  echo 'Belum ada kelas';
-                }
-                ?>
-            </td>
-            <td><?php echo $k->status; ?></td>
-            <td class="text-center" style="min-width:230px;">
-              <!-- <a href="<?php echo base_url(); ?>siswa/detail/<?php echo $k->id_siswa; ?>">
+            <<<<<<< HEAD=======<td><?php echo ($k->jenis_kelamin == 1) ? 'Laki-laki' : $retVal = ($k->jenis_kelamin == 2) ? 'Perempuan' : ''; ?></td>
+              >>>>>>> e7508161de0375d45ac98414bf6952c8165b7981
+              <td><?php echo $k->nama_ortu; ?></td>
+              <td><?php echo $k->alamat; ?></td>
+              <td><?php if (!empty($k->kelas)) {
+                    echo $k->nama_tipe_kelas . ' ' . $k->kelas;
+                  } else {
+                    echo 'Belum ada kelas';
+                  }
+                  ?>
+                <<<<<<< HEAD=======<td><?php echo $k->tahun_ajaran; ?></td>
+              >>>>>>> e7508161de0375d45ac98414bf6952c8165b7981
+              </td>
+              <td><?php echo $k->status; ?></td>
+              <td class="text-center" style="min-width:230px;">
+                <!-- <a href="<?php echo base_url(); ?>siswa/detail/<?php echo $k->id_siswa; ?>">
               <button class="btn btn-info"><i class="glyphicon glyphicon-zoom-in"></i> Detail</button>
             </a> -->
-              <a href="<?php echo base_url(); ?>siswa/edit/<?php echo $k->id_siswa; ?>">
-                <button class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Update</button>
-              </a>
-              <a href="<?php echo base_url(); ?>siswa/delete/<?php echo $k->id_siswa; ?>" onclick="return confirm('Anda yakin akan menghapus data ini...!')">
-                <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-              </a>
-            </td>
+                <a href="<?php echo base_url(); ?>siswa/edit/<?php echo $k->id_siswa; ?>">
+                  <button class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Update</button>
+                </a>
+                <a href="<?php echo base_url(); ?>siswa/delete/<?php echo $k->id_siswa; ?>" onclick="return confirm('Anda yakin akan menghapus data ini...!')">
+                  <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                </a>
+              </td>
           </tr>
         <?php } ?>
       </tbody>

@@ -77,8 +77,10 @@ class Riwayat_Pembayaran extends AUTH_Controller
 		// exit();
 
 		$data['siswa'] 				= $this->M_riwayat_pembayaran->select_all_detail_siswa1($nis);
+		foreach ($data['siswa'] as $k) {
+		}
 		// $data['total_pembayaran']= $this->M_riwayat_pembayaran->select_all_total_bayar_by_tipe($nis);
-		$data['setting_pembayaran'] = $this->M_riwayat_pembayaran->select_all_setting_bayar1($nis, $id_unit_pendidikan);
+		$data['setting_pembayaran'] = $this->M_riwayat_pembayaran->select_all_setting_bayar1($nis, $id_unit_pendidikan, $k->id_tahun_ajaran, $k->id_tipe_kelas);
 		$this->template->views('riwayat_pembayaran/detail_pembayaran', $data);
 	}
 
@@ -149,9 +151,13 @@ class Riwayat_Pembayaran extends AUTH_Controller
 
 		);
 
-		$this->M_riwayat_pembayaran->insert_pembayaran($data1);
-		$this->M_riwayat_pembayaran->insert_detail_pembayaran($data2);
-		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil disimpan'));
+		if ($id_kelas_siswa_detail == null) {
+			$this->session->set_flashdata('msg', show_err_msg('Data Kelas siswa detail null, mungkin siswa belum masuk ke kelas di tahun pembayaran yang sedang dibayarkan.'));
+		} else {
+			$this->M_riwayat_pembayaran->insert_pembayaran($data1);
+			$this->M_riwayat_pembayaran->insert_detail_pembayaran($data2);
+			$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil disimpan'));
+		}
 		redirect('riwayat_pembayaran/detail/' . $nis . '/' . $id_tahun_ajaran_siswa);
 	}
 

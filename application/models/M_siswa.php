@@ -12,9 +12,10 @@ class M_siswa extends CI_Model
 				LEFT JOIN kelas_siswa ON siswa.id_kelas_siswa = kelas_siswa.id_kelas_siswa
 				LEFT JOIN kelas ON kelas_siswa.id_kelas = kelas.id_kelas
 				LEFT JOIN tipe_kelas ON tipe_kelas.id_tipe_kelas = kelas.id_tipe_kelas
+				LEFT JOIN tahun_ajaran ON tahun_ajaran.id_tahun_ajaran = siswa.id_tahun_ajaran
 				WHERE user.id_user = '$id'
 				AND siswa.status = 'Aktif'
-				ORDER BY siswa.id_siswa ASC";
+				ORDER BY tahun_ajaran.id_tahun_ajaran ASC, siswa.nis ASC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
@@ -24,6 +25,9 @@ class M_siswa extends CI_Model
 		$sql = "SELECT * FROM siswa
 				LEFT JOIN tahun_ajaran ON tahun_ajaran.id_tahun_ajaran = siswa.id_tahun_ajaran
 				LEFT JOIN unit_pendidikan ON unit_pendidikan.id_unit_pendidikan = siswa.id_unit_pendidikan
+				LEFT JOIN kelas_siswa ON siswa.id_kelas_siswa = kelas_siswa.id_kelas_siswa
+				LEFT JOIN kelas ON kelas_siswa.id_kelas = kelas.id_kelas
+				LEFT JOIN tipe_kelas ON tipe_kelas.id_tipe_kelas = kelas.id_tipe_kelas
 				WHERE unit_pendidikan.id_unit_pendidikan = '$id'
 				ORDER BY siswa.nis ASC";
 		$data = $this->db->query($sql);

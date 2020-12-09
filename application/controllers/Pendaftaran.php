@@ -1,17 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pendaftaran extends AUTH_Controller {
+class Pendaftaran extends AUTH_Controller
+{
 
-	public function __construct() 
+	public function __construct()
 	{
 
 		parent::__construct();
 		$this->load->model('M_pendaftaran');
-
 	}
 
-	public function index() 
+	public function index()
 	{
 
 		$data['userdata'] 	= $this->userdata;
@@ -20,12 +20,11 @@ class Pendaftaran extends AUTH_Controller {
 		$data['judul'] 		= "PPDB";
 		$data['deskripsi'] 	= "Manage Data Pendaftaran";
 		$data['unit_pendidikan'] = $this->M_pendaftaran->select_all_unit_pendidikan($id);
-		$data['pendaftaran']= $this->M_pendaftaran->select_all_pendaftaran($id);
+		$data['pendaftaran'] = $this->M_pendaftaran->select_all_pendaftaran($id);
 		$this->template->views('pendaftaran/index', $data);
-
 	}
 
-	public function add() 
+	public function add()
 	{
 
 		$data['userdata']	= $this->userdata;
@@ -37,7 +36,6 @@ class Pendaftaran extends AUTH_Controller {
 		$data['unit_pendidikan'] 	= $this->M_pendaftaran->select_all_unit_pendidikan($id);
 		$data['tahun_ajaran'] 		= $this->M_pendaftaran->select_all_tahun_ajaran();
 		$this->template->views('pendaftaran/add', $data);
-
 	}
 
 	public function save()
@@ -54,7 +52,8 @@ class Pendaftaran extends AUTH_Controller {
 			'nama_ortu'			=> $this->input->post('nama_ortu'),
 			'alamat'			=> $this->input->post('alamat'),
 			'sekolah_asal'		=> $this->input->post('sekolah_asal'),
-			'id_unit_pendidikan'=> $this->input->post('id_unit_pendidikan'),
+			'id_unit_pendidikan' => $this->input->post('id_unit_pendidikan'),
+			'jenis_kelamin'		 => $this->input->post('jenis_kelamin'),
 			'status'			=> $this->input->post('status')
 
 		);
@@ -62,7 +61,6 @@ class Pendaftaran extends AUTH_Controller {
 		$this->M_pendaftaran->insert($data);
 		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil disimpan'));
 		redirect('pendaftaran/index');
-
 	}
 
 	function edit($id)
@@ -75,9 +73,8 @@ class Pendaftaran extends AUTH_Controller {
 		$data['deskripsi'] 	= "Manage Data Pendaftaran";
 
 		$where 				= array('id_daftar' => $id);
-		$data['pendaftaran']= $this->M_pendaftaran->edit_data($where,'pendaftaran')->result();
-		$this->template->views('pendaftaran/edit',$data);
-
+		$data['pendaftaran'] = $this->M_pendaftaran->edit_data($where, 'pendaftaran')->result();
+		$this->template->views('pendaftaran/edit', $data);
 	}
 
 	function update()
@@ -94,6 +91,7 @@ class Pendaftaran extends AUTH_Controller {
 		$sekolah_asal		= $this->input->post('sekolah_asal');
 		$status				= $this->input->post('status');
 		$id_unit_pendidikan	= $this->input->post('id_unit_pendidikan');
+		$jenis_kelamin		= $this->input->post('jenis_kelamin');
 
 		$data = array(
 
@@ -116,10 +114,9 @@ class Pendaftaran extends AUTH_Controller {
 
 		);
 
-		$this->M_pendaftaran->update_data($where,$data,'pendaftaran');
+		$this->M_pendaftaran->update_data($where, $data, 'pendaftaran');
 		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil diubah'));
 		redirect('pendaftaran/index');
-
 	}
 
 	function status_pendding($id)
@@ -139,10 +136,9 @@ class Pendaftaran extends AUTH_Controller {
 
 		);
 
-		$this->M_pendaftaran->update_data($where,$data,'pendaftaran');
+		$this->M_pendaftaran->update_data($where, $data, 'pendaftaran');
 		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil diubah'));
 		redirect('pendaftaran/index');
-
 	}
 
 	function status_cancel($id)
@@ -162,10 +158,9 @@ class Pendaftaran extends AUTH_Controller {
 
 		);
 
-		$this->M_pendaftaran->update_data($where,$data,'pendaftaran');
+		$this->M_pendaftaran->update_data($where, $data, 'pendaftaran');
 		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil diubah'));
 		redirect('pendaftaran/index');
-
 	}
 
 	function status_approved($id)
@@ -178,9 +173,8 @@ class Pendaftaran extends AUTH_Controller {
 		$data['deskripsi'] 	= "Manage Data Pendaftaran";
 
 		$where 				= array('id_daftar' => $id);
-		$data['pendaftaran']= $this->M_pendaftaran->edit_data($where,'pendaftaran')->result();
-		$this->template->views('pendaftaran/status_approved',$data);
-
+		$data['pendaftaran'] = $this->M_pendaftaran->edit_data($where, 'pendaftaran')->result();
+		$this->template->views('pendaftaran/status_approved', $data);
 	}
 
 	function save_status_approved()
@@ -204,7 +198,8 @@ class Pendaftaran extends AUTH_Controller {
 			'tanggal_lahir'		=> $this->input->post('tanggal_lahir'),
 			'nama_ortu'			=> $this->input->post('nama_ortu'),
 			'alamat'			=> $this->input->post('alamat'),
-			'id_unit_pendidikan'=> $this->input->post('id_unit_pendidikan'),
+			'id_unit_pendidikan' => $this->input->post('id_unit_pendidikan'),
+			'jenis_kelamin'		=> $this->input->post('jenis_kelamin'),
 			'status'			=> $this->input->post('status')
 
 		);
@@ -215,22 +210,20 @@ class Pendaftaran extends AUTH_Controller {
 
 		);
 
-		$this->M_pendaftaran->update_data($where,$data,'pendaftaran');
+		$this->M_pendaftaran->update_data($where, $data, 'pendaftaran');
 		$this->M_pendaftaran->insert_siswa($data_siswa);
 
 
 		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil diubah'));
 		redirect('pendaftaran/index');
-
 	}
 
-	public function delete($id) 
+	public function delete($id)
 	{
 
 		$data = array('id_daftar' => $id);
-		$this->M_pendaftaran->delete($data,'pendaftaran');
+		$this->M_pendaftaran->delete($data, 'pendaftaran');
 		$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil dihapus'));
 		redirect('pendaftaran/index');
-
 	}
 }

@@ -119,21 +119,35 @@ class Pembayaran extends AUTH_Controller
 	public function save_dua()
 	{
 		$id_setting_pembayaran = $this->input->post('id_setting_pembayaran');
+		$nis = $this->input->post('nis');
 
 		$data = array(
 			'id_pembayaran'			=> $this->input->post('id_pembayaran'),
 			'id_setting_pembayaran'	=> $id_setting_pembayaran,
 			'nominal'				=> $this->input->post('nominal')
 		);
-		$cek = $this->db->get_where('detail_pembayaran', ['id_setting_pembayaran' => $id_setting_pembayaran])->result();
-		var_dump($cek);
-		die;
+		$set = $this->db->get_where('setting_pembayaran', ['id_setting_pembayaran' => $id_setting_pembayaran])->row();
+		$siswa = $this->db->get_where('siswa', ['nis' => $nis])->row();
+
+		$detail_bayar = $this->db->join('pembayaran', 'pembayaran.id_pembayaran = detail_pembayaran.id_pembayaran', 'LEFT')->join('kelas_siswa_detail', 'kelas_siswa_detail.id_kelas_siswa_detail = pembayaran.id_kelas_siswa_detail', 'LEFT')->where(['id_setting_pembayaran' => $id_setting_pembayaran])->where(['kelas_siswa_detail.id_siswa' => $siswa->id_siswa])->get('detail_pembayaran')->result();
+
+		$total = 0;
+
+		foreach ($detail_bayar as $k) {
+			if (!empty($k->nominal)) {
+				$total += $k->nominal;
+			}
+		}
+
+		$kurang = $set->nominal - $total;
+		// var_dump($kurang);
+		// die;
 		$id_pembayaran = $this->input->post('id_pembayaran');
-		if ($this->input->post('nominal') <= '....') {
+		if ($this->input->post('nominal') <= $kurang) {
 			$this->M_pembayaran->insert_detail_pembayaran($data);
 			$this->session->set_flashdata('msg', show_succ_msg('Data Berhasil disimpan'));
 		} else {
-			$this->session->set_flashdata('msg', show_succ_msg('Data Gagal disimpan! nominal melebihi jumlah tagihan.'));
+			$this->session->set_flashdata('msg', show_err_msg('Data Gagal disimpan! nominal melebihi jumlah tagihan yaitu ' . number_format($kurang, '2', ',', '.') . '!'));
 		}
 		redirect('pembayaran/detail/' . $id_pembayaran);
 	}

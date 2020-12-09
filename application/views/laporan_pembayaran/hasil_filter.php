@@ -25,6 +25,9 @@
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Filter</button>
+              <a href="<?php echo base_url(); ?>Laporan_pembayaran/cetak/<?= $_POST['dari_tanggal'] . '/' . $_POST['sampai_tanggal'] ?>" target="_BLANK">
+                <button type="button" class="btn btn-basic"><i class="glyphicon glyphicon-print"></i> Cetak</button>
+              </a>
               <!-- <a href="#" target="_BLANK">
               <button type="submit" class="btn btn-basic"><i class="glyphicon glyphicon-print"></i> Cetak</button>
             </a> -->
@@ -72,10 +75,13 @@
                 }
                 ?>
               </td>
-              <td><?php echo $k->tahun_ajaran; ?> - <?php echo $k->kelas; ?></td>
-              <td><?php echo $k->nis; ?> - <?php echo $k->nama_siswa; ?></td>
-              <td><?php echo $k->tipe_pembayaran; ?></td>
-              <td>Rp. <?php echo number_format($k->nominal, '2', ',', '.'); ?></td>
+              <<<<<<< HEAD <td><?php echo $k->tahun_ajaran; ?> - <?php echo $k->kelas; ?></td>
+                =======
+                <td><?php echo $k->tahun_ajaran; ?> - <?php echo $k->nama_tipe_kelas . ' ' . $k->kelas; ?></td>
+                >>>>>>> e7508161de0375d45ac98414bf6952c8165b7981
+                <td><?php echo $k->nis; ?> - <?php echo $k->nama_siswa; ?></td>
+                <td><?php echo $k->tipe_pembayaran; ?></td>
+                <td>Rp. <?php echo number_format($k->nominal, '2', ',', '.'); ?></td>
             </tr>
         <?php }
         } ?>

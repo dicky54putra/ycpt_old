@@ -96,6 +96,24 @@ class M_kelas_siswa extends CI_Model
 		return $data->result();
 	}
 
+	public function select_all_siswa_add($id_user, $id_kelas_siswa, $id_tahun_ajaran)
+	{
+		$cek = $this->db->query("SELECT * FROM `kelas_siswa_detail` LEFT JOIN kelas_siswa ON kelas_siswa.id_kelas_siswa = kelas_siswa_detail.id_kelas_siswa WHERE kelas_siswa_detail.id_kelas_siswa = $id_kelas_siswa OR kelas_siswa.id_tahun_ajaran >= $id_tahun_ajaran")->result();
+		// 
+		$siswa_kelas_ini = '';
+		foreach ($cek as $k) {
+			$siswa_kelas_ini .= $k->id_siswa . ',';
+		}
+		$ski = substr($siswa_kelas_ini, 0, -1);
+		$sql = "SELECT * FROM siswa
+				LEFT JOIN unit_pendidikan ON unit_pendidikan.id_unit_pendidikan = siswa.id_unit_pendidikan
+				LEFT JOIN user ON user.id_unit_pendidikan = unit_pendidikan.id_unit_pendidikan
+				WHERE user.id_user = '$id_user'
+				AND siswa.id_siswa NOT IN ($ski)";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 	public function select_all_unit_pendidikan($id)
 	{
 		$sql = "SELECT * FROM unit_pendidikan
