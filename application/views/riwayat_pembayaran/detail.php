@@ -33,6 +33,10 @@
                       <td>Nama Siswa</td>
                       <td><?php echo $m->nama_siswa; ?></td>
                       </tr>
+                      </tr>
+                      <td>Kelas</td>
+                      <td><?php echo $m->nama_tipe_kelas . ' ' . $m->kelas; ?></td>
+                      </tr>
                       <tr>
                         <td>Tanggal Lahir</td>
                         <td>

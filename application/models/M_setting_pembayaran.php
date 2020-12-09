@@ -7,6 +7,7 @@ class M_setting_pembayaran extends CI_Model
 	public function select_all_setting_pembayaran($id)
 	{
 		$sql = "SELECT * FROM setting_pembayaran 
+				LEFT JOIN tipe_kelas ON tipe_kelas.id_tipe_kelas = setting_pembayaran.id_tipe_kelas
 				LEFT JOIN tahun_ajaran ON tahun_ajaran.id_tahun_ajaran = setting_pembayaran.id_tahun_ajaran
 				LEFT JOIN tipe_pembayaran ON tipe_pembayaran.id_tipe_pembayaran = setting_pembayaran.id_tipe_pembayaran
 				LEFT JOIN unit_pendidikan ON unit_pendidikan.id_unit_pendidikan = setting_pembayaran.id_unit_pendidikan

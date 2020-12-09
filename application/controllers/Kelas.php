@@ -58,6 +58,7 @@ class Kelas extends AUTH_Controller
 
 	{
 
+		$data['tipe_kelas'] = $this->db->get('tipe_kelas')->result();
 		$data['userdata']	= $this->userdata;
 		$data['page'] 		= "Kelas";
 		$data['judul'] 		= "Data Master";
@@ -70,22 +71,16 @@ class Kelas extends AUTH_Controller
 
 	function update()
 	{
-
-		$id 				= $this->input->post('id_kelas');
-		$kelas 				= $this->input->post('kelas');
-		$id_unit_pendidikan = $this->input->post('id_unit_pendidikan');
+		$id = $this->input->post('id_kelas');
 
 		$data = array(
-
-			'kelas' 				=> $kelas,
-			'id_unit_pendidikan' 	=> $id_unit_pendidikan
-
+			'kelas' 				=> $this->input->post('kelas'),
+			'id_unit_pendidikan' 	=> $this->input->post('id_unit_pendidikan'),
+			'id_tipe_kelas' => $this->input->post('id_tipe_kelas')
 		);
 
 		$where = array(
-
 			'id_kelas' => $id
-
 		);
 
 		$this->M_kelas->update_data($where, $data, 'kelas');
